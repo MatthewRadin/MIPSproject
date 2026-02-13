@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cog4gfqnwt6rt"]
+
+[ext_resource type="Script" uid="uid://dctw57key0i8m" path="res://scenes/control.gd" id="1_0fbet"]
+[ext_resource type="Script" uid="uid://cblq1duli0tf8" path="res://scripts/parser.gd" id="1_62e2m"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_62e2m")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_0fbet")
+
+[node name="btn_open" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 83.0
+offset_bottom = 31.0
+text = "Select file"
+
+[node name="file_dialog" type="FileDialog" parent="Control"]
+oversampling_override = 1.0
+title = "Open a File"
+file_mode = 0
+display_mode = 1
+filters = PackedStringArray("*.txt", "*.asm")

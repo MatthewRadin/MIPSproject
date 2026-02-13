@@ -1,0 +1,67 @@
+{
+  "instructions": {
+	"add": {
+	  "type": "R",
+	  "operands": ["rd", "rs", "rt"],
+	  "effect": {
+		"op": "+",
+		"dest": "rd",
+		"args": ["rs", "rt"]
+	  }
+	},
+	"sub": {
+	  "type": "R",
+	  "operands": ["rd", "rs", "rt"],
+	  "effect": {
+		"op": "-",
+		"dest": "rd",
+		"args": ["rs", "rt"]
+	  }
+	},
+	"and": {
+	  "type": "R",
+	  "operands": ["rd", "rs", "rt"],
+	  "effect": {
+		"op": "&",
+		"dest": "rd",
+		"args": ["rs", "rt"]
+	  }
+	},
+	"or": {
+	  "type": "R",
+	  "operands": ["rd", "rs", "rt"],
+	  "effect": {
+		"op": "|",
+		"dest": "rd",
+		"args": ["rs", "rt"]
+	  }
+	},
+	"addi": {
+	  "type": "I",
+	  "operands": ["rt", "rs", "imm"],
+	  "effect": {
+		"op": "+",
+		"dest": "rt",
+		"args": ["rs", "imm"]
+	  }
+	},
+	"lw": {
+	  "type": "I",
+	  "operands": ["rt", "offset", "base"],
+	  "effect": {
+		"op": "load",
+		"dest": "rt",
+		"args": ["base", "offset"]
+	  }
+	},
+	"sw": {
+	  "type": "I",
+	  "operands": ["rt", "offset", "base"],
+	  "effect": {
+		"op": "store",
+		"src": "rt",
+		"args": ["base", "offset"]
+	  }
+	}
+  }
+}
