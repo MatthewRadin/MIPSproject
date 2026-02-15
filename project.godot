@@ -14,3 +14,7 @@ config/name="MIPS Reader"
 run/main_scene="uid://cog4gfqnwt6rt"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Parser="*res://scripts/parser.gd"

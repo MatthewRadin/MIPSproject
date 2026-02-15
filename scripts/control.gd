@@ -15,12 +15,15 @@ func _on_btn_open_pressed() -> void:
 
 func _on_file_selected(path: String) -> void:
 	var file := FileAccess.open(path, FileAccess.READ)
+	var fileLines: Array[String] = []
 	if file == null:
 		push_error("Failed to open file: %s" % path)
 		return
 
 	while not file.eof_reached():
 		var line = file.get_line()
+		fileLines.append(line)
+	for line in fileLines:
 		print(line)
 	file.close()
 	print("--- done reading %s ---" % path)
