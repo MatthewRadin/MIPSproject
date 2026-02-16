@@ -26,4 +26,4 @@ func _on_file_selected(path: String) -> void:
 	for line in fileLines:
 		print(line)
 	file.close()
-	print("--- done reading %s ---" % path)
+	preload("res://scripts/parser.gd").new().parseMIPS(fileLines)
