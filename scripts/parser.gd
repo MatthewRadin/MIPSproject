@@ -1,6 +1,8 @@
 extends Node
 
 var instructionSet: Dictionary[String, Instruction] = {}
+var mipsProgram: Array[ProgramLine] = []
+var labelDict: Dictionary[String, int] = {}
 
 func _ready():
 	var file = FileAccess.open("res://smallMIPSinstructions.txt", FileAccess.READ)
@@ -24,6 +26,33 @@ func _ready():
 	return instructionSet
 
 func parseMIPS(mipsLines):
+	var idx = 0
 	for line in mipsLines:
-		print(line)
-	return
+		var splitLine = line.split(" ", false)
+		var progLine = ProgramLine.new()
+		progLine.text = line
+		progLine.label = null
+		if splitLine[0].is_empty():
+			break
+		elif instructionSet.has(splitLine[0]):
+				progLine.instruction = splitLine[0]
+				var operandNum = instructionSet.get(progLine.instruction).operands.length()
+				if splitLine.length() != operandNum+1:
+					progLine.is_valid = false
+					progLine.error = "Improper number of operands"
+					break
+				else:
+					var rawOp: Array[String]
+					for i in range(1, operandNum+1):
+						rawOp.append(splitLine[i])
+					mipsProgram.append(progLine)
+		elif splitLine[0].ends_with(":"):
+			progLine.label = splitLine[0].trim_suffix(":")
+			labelDict[progLine.label] =  idx
+			mipsProgram.append(progLine)
+		else:
+			progLine.is_valid = false
+			progLine.error = "Invalid instruction"
+		idx += 1
+
+	return mipsProgram
