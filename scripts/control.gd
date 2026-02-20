@@ -23,7 +23,8 @@ func _on_file_selected(path: String) -> void:
 	while not file.eof_reached():
 		var line = file.get_line()
 		fileLines.append(line)
-	for line in fileLines:
-		print(line)
 	file.close()
-	preload("res://scripts/parser.gd").new().parseMIPS(fileLines)
+	var parser = preload("res://scripts/parser.gd").new()
+	add_child(parser)
+	await get_tree().process_frame
+	var parsedMips = parser.parseMIPS(fileLines)
