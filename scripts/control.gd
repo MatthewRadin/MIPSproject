@@ -4,8 +4,8 @@ extends Control
 @onready var file_dialog = $file_dialog
 
 func _ready():
-	file_dialog.access = FileDialog.ACCESS_FILESYSTEM
-	file_dialog.current_dir = OS.get_user_data_dir()
+	file_dialog.access = FileDialog.ACCESS_RESOURCES
+	file_dialog.current_dir = "res://"
 
 	btn_open.pressed.connect(_on_btn_open_pressed)
 	file_dialog.file_selected.connect(_on_file_selected)
