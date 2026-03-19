@@ -28,3 +28,11 @@ func _on_file_selected(path: String) -> void:
 	add_child(parser)
 	await get_tree().process_frame
 	var parsedMips = parser.parseMIPS(fileLines)
+	print("running command")
+	var interpreter = preload("res://scripts/interpreter.gd").new()
+	print("line 1")
+	interpreter.execute(parsedMips[1])
+	print("line 2")
+	interpreter.execute(parsedMips[2])
+	print ("line 3")
+	interpreter.execute(parsedMips[3])

@@ -1,6 +1,5 @@
 extends Node
 
-var instructionSet: Dictionary[String, Instruction] = {}
 var mipsProgram: Array[ProgramLine] = []
 var labelDict: Dictionary[String, int] = {}
 
@@ -22,7 +21,7 @@ func _ready():
 		for arg in entry["effect"]["args"]:
 			inst.args.append(str(arg))
 		inst.cycles = 0
-		instructionSet[name] = inst
+		InstructionSet.instructionSet[name] = inst
 
 func parseMIPS(mipsLines):
 	var idx = 0
@@ -33,9 +32,9 @@ func parseMIPS(mipsLines):
 		progLine.label = ""
 		if splitLine[0].is_empty():
 			print("its empty")
-		elif instructionSet.has(splitLine[0]):
+		elif InstructionSet.instructionSet.has(splitLine[0]):
 				progLine.instruction = splitLine[0]
-				var operandNum = instructionSet.get(progLine.instruction).operands.size()
+				var operandNum = InstructionSet.instructionSet.get(progLine.instruction).operands.size()
 				if splitLine.size() != operandNum+1:
 					progLine.is_valid = false
 					progLine.error = "Improper number of operands"

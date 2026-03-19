@@ -18,3 +18,4 @@ config/icon="res://icon.svg"
 [autoload]
 
 Registers="*res://scripts/registers.gd"
+InstructionSet="*res://scripts/instructionSet.gd"
