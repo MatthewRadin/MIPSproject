@@ -29,7 +29,7 @@ func parseMIPS(mipsLines):
 	for line in mipsLines:
 		var splitLine = line.split(" ", false)
 		var progLine = ProgramLine.new()
-		progLine.text = line
+		progLine.text = line.lstrip(' ')
 		progLine.label = ""
 		if splitLine[0].is_empty():
 			print("its empty")
@@ -43,6 +43,7 @@ func parseMIPS(mipsLines):
 					var rawOp: Array[String] = []
 					for i in range(1, operandNum+1):
 						rawOp.append(splitLine[i].trim_suffix(","))
+					progLine.raw_operands = rawOp
 					mipsProgram.append(progLine)
 		elif splitLine[0].ends_with(":"):
 			progLine.label = splitLine[0].trim_suffix(":")
@@ -52,5 +53,4 @@ func parseMIPS(mipsLines):
 			progLine.is_valid = false
 			progLine.error = "Invalid instruction"
 		idx += 1
-
 	return mipsProgram
