@@ -9,9 +9,11 @@ func execute(progLine):
 			print("subtracting")
 			return _sub(progLine)
 		Instruction.Operator.AND:
-			pass
+			print("and-ing")
+			return _and(progLine)
 		Instruction.Operator.OR:
-			pass
+			print("or-ing")
+			return _or(progLine)
 		Instruction.Operator.LOAD:
 			pass
 		Instruction.Operator.STORE:
@@ -66,5 +68,53 @@ func _sub(progLine):
 			print(arg2)
 			print(arg1-arg2)
 			Registers.registers[Registers.register_map[arguments[0]]] = arg1-arg2
+			return 0
+	return "Type not supported"
+
+func _and(progLine):
+	match InstructionSet.instructionSet[progLine.instruction].type:
+		"R":
+			print("R type AND")
+			var arguments = progLine.raw_operands
+			var arg1 = Registers.registers[Registers.register_map[arguments[1]]]
+			var arg2 = Registers.registers[Registers.register_map[arguments[2]]]
+			print(arg1)
+			print(arg2)
+			print(arg1 & arg2)
+			Registers.registers[Registers.register_map[arguments[0]]] = arg1 & arg2
+			return 0
+		"I":
+			print("I type AND")
+			var arguments = progLine.raw_operands
+			var arg1 = Registers.registers[Registers.register_map[arguments[1]]]
+			var arg2 = int(arguments[2])
+			print(arg1)
+			print(arg2)
+			print(arg1 & arg2)
+			Registers.registers[Registers.register_map[arguments[0]]] = arg1 & arg2
+			return 0
+	return "Type not supported"
+
+func _or(progLine):
+	match InstructionSet.instructionSet[progLine.instruction].type:
+		"R":
+			print("R type OR")
+			var arguments = progLine.raw_operands
+			var arg1 = Registers.registers[Registers.register_map[arguments[1]]]
+			var arg2 = Registers.registers[Registers.register_map[arguments[2]]]
+			print(arg1)
+			print(arg2)
+			print(arg1 | arg2)
+			Registers.registers[Registers.register_map[arguments[0]]] = arg1 | arg2
+			return 0
+		"I":
+			print("I type OR")
+			var arguments = progLine.raw_operands
+			var arg1 = Registers.registers[Registers.register_map[arguments[1]]]
+			var arg2 = int(arguments[2])
+			print(arg1)
+			print(arg2)
+			print(arg1 | arg2)
+			Registers.registers[Registers.register_map[arguments[0]]] = arg1 | arg2
 			return 0
 	return "Type not supported"

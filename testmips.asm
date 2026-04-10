@@ -3,3 +3,4 @@ main:
     addi $t1, $zero, 4
     sub  $t2, $t0, $t1
     and  $t3, $t0, $t1
+    or   $t4, $t3, $t1

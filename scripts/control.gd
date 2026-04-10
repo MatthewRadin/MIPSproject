@@ -36,3 +36,7 @@ func _on_file_selected(path: String) -> void:
 	interpreter.execute(parsedMips[2])
 	print ("line 3")
 	interpreter.execute(parsedMips[3])
+	print("line 4")
+	interpreter.execute(parsedMips[4])
+	print("line 5")
+	interpreter.execute(parsedMips[5])
